@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue to do list</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="master.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div id="root">
+    <h1>COSE DA FARE</h1>
+    <ul>
+      <li v-for="(compito, index) in lista" v-if="compito.nascosto == 'false'">
+        <i v-if ="compito.status == 'undone'"class="far fa-check-square" @click="spunta(index)"></i>
+        <i v-if="compito.status == 'done'" class="fas fa-trash" @click="rimuovi(index)"></i>
+        <p class="stacco"></p>
+        <span :class="(compito.status == 'done') ? 'spuntato' : ''">{{index + 1}}) {{compito.voce}}</span>
+      </li>
+    </ul>
+    <div>
+      <input
+      v-model="nuovoCompito"
+      type="text"
+      placeholder="Nuovo compito"
+      v-on:keydown.enter="aggiungi"
+      >
+      <button @click="aggiungi">Inserisci</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="main.js" charset="utf-8"></script>
+
+</body>
+</html>
